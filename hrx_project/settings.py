@@ -147,19 +147,11 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
-
-CORS_ALLOWED_ORIGINS = [
-   # In hrx_project/settings.py
-
-CORS_ALLOWED_ORIGINS = [
-# This is the correct format
-
+# THIS IS THE CORRECT CODE TO USE
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://your-frontend-url.com',
 ]
-
-# Correct version
 AUTH_USER_MODEL = 'users.CustomUser'
 
 MEDIA_URL = '/media/'
