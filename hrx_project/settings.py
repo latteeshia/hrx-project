@@ -152,9 +152,11 @@ CORS_ALLOWED_ORIGINS = [
    # In hrx_project/settings.py
 
 CORS_ALLOWED_ORIGINS = [
+# This is the correct format
+
+CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
-    # You can leave the placeholder for your future live frontend URL
-    'https://your-frontend-url.com', 
+    'https://your-frontend-url.com',
 ]
 
 # Correct version
