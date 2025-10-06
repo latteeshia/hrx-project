@@ -1,6 +1,6 @@
 # hrx_project/settings.py
 
-import os                      
+import os
 from pathlib import Path
 from dotenv import load_dotenv 
 import dj_database_url 
@@ -32,7 +32,7 @@ if RENDER_EXTERNAL_HOSTNAME:
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = [ # Ensure this line is included
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -147,12 +147,14 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
-# THIS IS THE CORRECT CODE TO USE
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'https://your-frontend-url.com',
-]
+
 AUTH_USER_MODEL = 'users.CustomUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# --- ADD THIS BLOCK AT THE VERY END OF THE FILE ---
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]

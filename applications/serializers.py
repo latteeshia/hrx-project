@@ -1,13 +1,28 @@
+# applications/serializers.py
 from rest_framework import serializers
 from .models import Application
+from jobs.models import Job
+from users.models import CustomUser
 
-class ApplicationSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('id', 'username', 'email', 'role')
+
+class JobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = '__all__'
+
+class ApplicationCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
-        fields = ['id', 'job', 'applicant', 'status', 'applied_at']
-        read_only_fields = ['applicant','job']
+        fields = ('job',)
 
-class ApplicationUpdateSerializer(serializers.ModelSerializer):
+class ApplicationDetailSerializer(serializers.ModelSerializer):
+    job = JobSerializer(read_only=True)
+    applicant = UserSerializer(read_only=True)
+
     class Meta:
         model = Application
-        fields = ['status']
+        fields = ('id', 'job', 'applicant', 'date_applied')

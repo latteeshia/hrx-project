@@ -1,7 +1,6 @@
 # jobs/models.py
-
 from django.db import models
-from users.models import CustomUser # We need to link a job to a user
+from django.conf import settings
 
 class Job(models.Model):
     title = models.CharField(max_length=255)
@@ -9,14 +8,11 @@ class Job(models.Model):
     location = models.CharField(max_length=255)
     description = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
-
-    # Link to the user who posted the job
-    # We limit choices to only users with the 'recruiter' role
     posted_by = models.ForeignKey(
-        CustomUser, 
-        on_delete=models.CASCADE, 
-        limit_choices_to={'role': 'recruiter'}
+        settings.AUTH_USER_MODEL, 
+        related_name='jobs', 
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
-        return f"{self.title} at {self.company}"
+        return self.title
