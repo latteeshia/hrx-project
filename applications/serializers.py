@@ -1,8 +1,8 @@
 # applications/serializers.py
 from rest_framework import serializers
 from .models import Application
-from jobs.models import Job
-from users.models import CustomUser
+from jobs.models import Job          # CORRECTED: Import Job from the 'jobs' app
+from users.models import CustomUser  # CORRECTED: Import your CustomUser model
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
